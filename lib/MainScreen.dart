@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:tavel_app/BookingScreen/BookingScreen.dart';
 import 'package:tavel_app/home/HomeScreen.dart';
-import 'package:tavel_app/location/SavedLocationScreen.dart';
+
 
 class MainScreen extends StatefulWidget {
   @override
@@ -16,9 +16,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    SavedLocationsPage(),
-    BookingScreen(),
+     BookingScreen(),
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,9 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.book_online),
             label: 'Booking',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_online),
+            label: 'Booking',)
         ],
       ),
     );

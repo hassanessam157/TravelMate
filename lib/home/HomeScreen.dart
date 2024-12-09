@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tavel_app/BookingScreen/BookingScreen.dart';
-import 'package:tavel_app/location/SavedLocationScreen.dart';
+import 'package:tavel_app/home/HotelScreen.dart';
+import 'package:tavel_app/home/PopularHotel.dart';
+import 'package:tavel_app/home/PopularLocation.dart';
+import 'package:tavel_app/home/PopularRestaurants.dart';
+import 'package:tavel_app/home/RestaurantScreen.dart';
+import 'package:tavel_app/home/SettingScreen.dart';
+import 'package:tavel_app/location/Location_screen.dart';
 import 'package:tavel_app/home/FlightOptionsScreen.dart';
-import 'package:tavel_app/home/HotelOptionsScreen.dart';
-import 'package:tavel_app/home/RestaurantOptionsScreen.dart';
-import 'package:tavel_app/location/LocationDetailsScreen.dart';
 
+// Main HomeScreen with navigation
 class HomeScreen extends StatefulWidget {
   static const String routename = 'home';
 
@@ -18,15 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // List of screens to navigate to
   final List<Widget> _screens = [
-    MainHomeScreen(), // Home Main Content
-    SavedLocationsPage(), // Saved Locations
+    MainHomeScreen(),
     BookingScreen(), // Booking
+    LocationScreen(),
+    SettingsScreen()// Added LocationScreen to navigation
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex], // Render the current active screen
+      body: _screens[_currentIndex], // Dynamically render the active screen
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -41,12 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: "Saved",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.book_online),
             label: "Booking",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.location_on),
+            label: "Location",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Setting",
           ),
         ],
       ),
@@ -54,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Main Home Screen Widget
+// Main Home UI with sections for popular features and clickable lists
 class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,147 +72,55 @@ class MainHomeScreen extends StatelessWidget {
         title: const Text('Welcome In TravelMate'),
         backgroundColor: Colors.orange,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Let\'s Travel Together',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildButton(
-                  Icons.flight,
-                  'Flights',
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FlightOptionsScreen()),
-                    );
-                  },
-                ),
-                _buildButton(
-                  Icons.restaurant,
-                  'Restaurant',
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RestaurantOptionsScreen()),
-                    );
-                  },
-                ),
-                _buildButton(
-                  Icons.hotel,
-                  'Hotel',
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HotelOptionsScreen()),
-                    );
-                  },
-                ),
-                _buildButton(
-                  Icons.local_offer,
-                  'Deals',
-                      () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Deals feature coming soon!')),
-                    );
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Popular Locations',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _buildLocationCard(
-                    context,
-                    'The Mountains of North',
-                    'https://via.placeholder.com/150',
-                  ),
-                  _buildLocationCard(
-                    context,
-                    'Beach Paradise',
-                    'https://via.placeholder.com/150',
-                  ),
-                  _buildLocationCard(
-                    context,
-                    'Tropical Island',
-                    'https://via.placeholder.com/150',
-                  ),
-                  _buildLocationCard(
-                    context,
-                    'City Lights',
-                    'https://via.placeholder.com/150',
-                  ),
-                  _buildLocationCard(
-                    context,
-                    'Desert Oasis',
-                    'https://via.placeholder.com/150',
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildButton(IconData icon, String label, VoidCallback onPressed) {
-    return InkWell(
-      onTap: onPressed,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 40, color: Colors.orange),
-          SizedBox(height: 8),
-          Text(label, style: TextStyle(color: Colors.black)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLocationCard(BuildContext context, String name, String image) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LocationDetailScreen(locationName: name, imageUrl: image),
-          ),
-        );
-      },
-      child: Card(
-        child: Container(
-          width: 150,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                image,
-                fit: BoxFit.cover,
-                height: 100,
-                width: 150,
+              const Text(
+                'Let\'s Travel Together',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  name,
-                  style: TextStyle(fontSize: 14),
+              SizedBox(height: 10),
+              // Popular Tabs Section
+              PopularTabsSection(),
+              SizedBox(height: 20),
+              // Restaurant Posts Section
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(HotelScreen.routename);
+                },
+                child: const Text(
+                  'Popoular Restaurants',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
+              PopularRestaurants(),
+              SizedBox(height: 20),
+              // Hotel Posts Section
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(HotelScreen.routename);
+                },
+                child: const Text(
+                  'Popoular Hotels',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              PopularHotels(),
+              SizedBox(height: 20),
+              // Location Posts Section
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(LocationScreen.routename);
+                },
+                child: const Text(
+                  'Explore Locations',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              PopularLocations()
             ],
           ),
         ),
@@ -211,3 +128,55 @@ class MainHomeScreen extends StatelessWidget {
     );
   }
 }
+
+// Section with three popular tabs (Restaurant, Hotel, Location)
+class PopularTabsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        _buildCategoryButton(Icons.flight, 'Flight', () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FlightOptionsScreen()),
+          );
+        }),
+
+        _buildCategoryButton(Icons.restaurant, 'Restaurant', () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => RestaurantScreen()),
+          );
+        }),
+        _buildCategoryButton(Icons.hotel, 'Hotel', () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HotelScreen()),
+          );
+        }),
+        _buildCategoryButton(Icons.location_on, 'Location', () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LocationScreen()),
+          );
+        }),
+      ],
+    );
+  }
+
+  Widget _buildCategoryButton(IconData icon, String label, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.orange, size: 40),
+          SizedBox(height: 4),
+          Text(label, style: TextStyle(fontSize: 14)),
+        ],
+      ),
+    );
+  }
+}
+// Example clickable location list
+

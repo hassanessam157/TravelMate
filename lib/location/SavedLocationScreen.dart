@@ -1,67 +1,69 @@
 
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SavedLocationsPage extends StatelessWidget {
-  static const String routename='savedlocation';
+class SavedScreen extends StatelessWidget {
+     static const String routname='SavedScreen';
+
+
+  final String name;
+  final String description;
+  final String imageUrl;
+  final double starRating;
+
+   SavedScreen({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
+    required this.starRating,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Saved Locations'),
-        backgroundColor: Colors.orange,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
+        title: const Text('Saved Item'),
       ),
-      body: ListView(
-        children: [
-          _buildSavedLocationCard('North Area', '★★★★★ (150 reviews)',
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              'https://via.placeholder.com/150'),
-          _buildSavedLocationCard('North Area', '★★★★★ (150 reviews)',
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              'https://via.placeholder.com/150'),
-          _buildSavedLocationCard('North Area', '★★★★★ (150 reviews)',
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              'https://via.placeholder.com/150'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSavedLocationCard(String locationName, String reviews, String description, String imageUrl) {
-    return Card(
-      margin: EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(imageUrl, fit: BoxFit.cover, width: 100, height: 80),
-            SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(locationName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 5),
-                  Text(reviews, style: TextStyle(fontSize: 14)),
-                  SizedBox(height: 5),
-                  Text(description, style: TextStyle(fontSize: 14)),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Book Now'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      minimumSize: Size(double.infinity, 0), // Full width button
-                    ),
-                  ),
-                ],
+            Image.asset(
+              imageUrl,
+              height: 200,
+              width: 200,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              description,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                5,
+                    (index) {
+                  if (index < starRating.floor()) {
+                    return const Icon(Icons.star, color: Colors.orange, size: 20);
+                  } else if (index < starRating) {
+                    return const Icon(Icons.star_half, color: Colors.orange, size: 20);
+                  } else {
+                    return const Icon(Icons.star_border, color: Colors.orange, size: 20);
+                  }
+                },
               ),
             ),
           ],

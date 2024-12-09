@@ -13,34 +13,36 @@ class BookingScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Let\'s Travel Together',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 20),
-            _buildDestinationField(),
-            SizedBox(height: 10),
-            _buildTravelTypeField(),
-            SizedBox(height: 10),
-            _buildDateField('Check In Date'),
-            SizedBox(height: 10),
-            _buildDateField('Check Out Date'),
-            SizedBox(height: 10),
-            _buildGuestsField(),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Handle search action
-              },
-              child: Text('SEARCH'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                minimumSize: Size(double.infinity, 0), // Full width button
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Let\'s Travel Together',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              SizedBox(height: 20),
+              _buildDestinationField(),
+              SizedBox(height: 10),
+              _buildTravelTypeField(),
+              SizedBox(height: 10),
+              _buildDateField('Check In Date'),
+              SizedBox(height: 10),
+              _buildDateField('Check Out Date'),
+              SizedBox(height: 10),
+              _buildGuestsField(),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Handle search action
+                },
+                child: Text('SEARCH'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  minimumSize: Size(double.infinity, 0), // Full width button
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

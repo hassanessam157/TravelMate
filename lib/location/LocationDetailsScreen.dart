@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import '../models/Location.dart';
 
 class LocationDetailScreen extends StatelessWidget {
-  static const String routename = 'locationdetailscreen';
   final String locationName;
-  final String imageUrl;
+  final String locationDescription;
+  final String locationImage;
+  final double locationStarRating;
+  final Location location;
 
-  LocationDetailScreen({
+  const LocationDetailScreen({
+    Key? key,
     required this.locationName,
-    required this.imageUrl,
-  });
+    required this.locationDescription,
+    required this.locationImage,
+    required this.locationStarRating,
+    required this.location,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,52 +23,50 @@ class LocationDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(locationName),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-            height: 200,
-            width: double.infinity,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              locationName,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              locationImage,
+              height: 200,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              children: List.generate(
-                4,
-                    (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
+            const SizedBox(height: 16),
+            Text(
+              locationName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
               ),
             ),
-          ),
-          SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Explore this beautiful location for relaxation and adventures!',
-              style: TextStyle(fontSize: 16),
+            const SizedBox(height: 8),
+            Text(
+              locationDescription,
+              style: const TextStyle(fontSize: 16),
             ),
-          ),
-          SizedBox(height: 20),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Booking for $locationName')),
-                );
-              },
-              child: Text('Book Now'),
+            const SizedBox(height: 8),
+            Row(
+              children: List.generate(
+                5,
+                    (index) {
+                  if (index < locationStarRating.floor()) {
+                    return const Icon(Icons.star, color: Colors.orange, size: 20);
+                  } else if (index < locationStarRating) {
+                    return const Icon(Icons.star_half, color: Colors.orange, size: 20);
+                  } else {
+                    return const Icon(Icons.star_border, color: Colors.orange, size: 20);
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
+

@@ -1,11 +1,13 @@
 class Location {
   final String name;
-  final String imageUrl;
   final String description;
+  final String image;
+  final double starRating;
 
   Location({
     required this.name,
-    required this.imageUrl,
     required this.description,
+    required this.image,
+    required this.starRating,
   });
 }
