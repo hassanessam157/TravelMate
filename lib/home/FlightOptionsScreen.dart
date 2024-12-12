@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tavel_app/BookingScreen/bookingFlights.dart';
 
 class FlightOptionsScreen extends StatelessWidget {
   static const String routename='flightoptions';
@@ -7,7 +8,7 @@ class FlightOptionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: Text('Flight Options'),
+        title: Text('Flight '),
         elevation: 10,
       ),
       body: ListView(
@@ -107,9 +108,7 @@ class FlightOptionsScreen extends StatelessWidget {
         isThreeLine: true,
         trailing: ElevatedButton(
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Flight $flightNumber booked')),
-            );
+            Navigator.of(context).pushNamed(BookingFlightScreen.routename);
           },
           child: Text('Book'),
         ),

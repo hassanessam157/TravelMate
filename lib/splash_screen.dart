@@ -28,12 +28,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Icon(
-          Icons.handshake,
-          size: 80.0,
-          color: Colors.orange,
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('TravelMate',style:TextStyle(fontSize: 50,
+              color: Colors.orange,
+              ),),
+          Center(
+            child: Icon(
+              Icons.handshake,
+              size: 80.0,
+              color: Colors.orange,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tavel_app/Account/AccountScreen.dart';
 import 'package:tavel_app/Account/LoginScreen.dart';
+import 'package:tavel_app/Account/RegisterScreen.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routename = 'settings';

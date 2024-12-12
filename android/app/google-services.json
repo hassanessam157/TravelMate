@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446967945186",
+    "project_id": "travelmate-2b604",
+    "storage_bucket": "travelmate-2b604.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446967945186:android:dab33ee8a0d91391cecbbb",
+        "android_client_info": {
+          "package_name": "com.example.tavel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqdGU__tN-2hlimjllOpgXgyajoGOO__c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

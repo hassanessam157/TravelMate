@@ -23,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of screens to navigate to
   final List<Widget> _screens = [
     MainHomeScreen(),
-    BookingScreen(), // Booking
     LocationScreen(),
     SettingsScreen()// Added LocationScreen to navigation
   ];
@@ -44,10 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_online),
-            label: "Booking",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),
@@ -92,7 +87,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(HotelScreen.routename);
                 },
                 child: const Text(
-                  'Popoular Restaurants',
+                  'Popular Restaurants',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -104,7 +99,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(HotelScreen.routename);
                 },
                 child: const Text(
-                  'Popoular Hotels',
+                  'Popular Hotels',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -116,7 +111,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(LocationScreen.routename);
                 },
                 child: const Text(
-                  'Explore Locations',
+                  'Popular Locations',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),

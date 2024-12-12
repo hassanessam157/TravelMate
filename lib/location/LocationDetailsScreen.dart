@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:tavel_app/home/HotelScreen.dart';
 import '../models/Location.dart';
 
 class LocationDetailScreen extends StatelessWidget {
   final String locationName;
-  final String locationDescription;
+  final String locationDescription1;
   final String locationImage;
   final double locationStarRating;
+  final String locationDescription2;
   final Location location;
 
   const LocationDetailScreen({
     Key? key,
     required this.locationName,
-    required this.locationDescription,
+    required this.locationDescription1,
     required this.locationImage,
     required this.locationStarRating,
+    required this.locationDescription2,
     required this.location,
   }) : super(key: key);
 
@@ -22,9 +25,10 @@ class LocationDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(locationName),
+        backgroundColor: Colors.orange,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(11.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,7 +48,7 @@ class LocationDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              locationDescription,
+              locationDescription1,
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 8),
@@ -62,6 +66,21 @@ class LocationDetailScreen extends StatelessWidget {
                 },
               ),
             ),
+            const SizedBox(height: 8),
+            Text(
+              locationDescription2,
+              style: const TextStyle(fontSize: 16),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){
+                  Navigator.of(context).pushNamed(HotelScreen.routename);
+                },
+                    child: Text('Search Hotels'))
+              ],
+            )
+
           ],
         ),
       ),

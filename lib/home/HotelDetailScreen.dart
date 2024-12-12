@@ -5,17 +5,9 @@ import 'package:tavel_app/models/Hotel.dart';
 class HotelDetailScreen extends StatelessWidget {
   final Hotel hotel;
 
-  final String hotelName;
-  final String hotelDescription;
-  final String hotelImageUrl;
-  final double hotelStarRating;
-
   const HotelDetailScreen({
     Key? key,
-    required this.hotelName,
-    required this.hotelDescription,
-    required this.hotelImageUrl,
-    required this.hotelStarRating, required this.hotel,
+    required this.hotel,
   }) : super(key: key);
 
   @override
@@ -30,45 +22,81 @@ class HotelDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Hotel Image
-            Image.asset(
-              hotel.image,
-              fit: BoxFit.cover,
-              height: 250,
-              width: double.infinity,
+            Stack(
+              children: [
+                Image.asset(
+                  hotel.image,
+                  fit: BoxFit.cover,
+                  height: 250,
+                  width: double.infinity,
+                ),
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    color: Colors.black.withOpacity(0.5),
+                    child: Row(
+                      children: [
+                        Text(
+                          '${hotel.starRating} ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(Icons.star, color: Colors.yellow, size: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
 
-            // Hotel name
+            // Hotel Name
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 hotel.name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(height: 4),
-
-            // Hotel description
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                hotel.description,
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-              ),
-            ),
-            SizedBox(height: 8),
-
-            // Stars Row
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: List.generate(
-                  hotel.starRating.toInt(),
-                      (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
               ),
             ),
             SizedBox(height: 8),
+
+            // Hotel Description Part 1
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                hotel.description1,
+                style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Hotel Description Part 2
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                hotel.description2,
+                style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Divider
+            Divider(
+              thickness: 1,
+              color: Colors.grey[300],
+              indent: 16,
+              endIndent: 16,
+            ),
+            SizedBox(height: 16),
 
             // Booking Button
             Center(
@@ -76,13 +104,22 @@ class HotelDetailScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => BookingScreen()),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Booking ${hotel.name}')),
+                    MaterialPageRoute(
+                      builder: (context) => BookingScreen(
+                        hotelId: hotel.hotelId,
+                        hotelName: hotel.name,
+                      ),
+                    ),
                   );
                 },
-                child: Text('Book Now'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
+                child: Text(
+                  'Book Now',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ),
             ),
             SizedBox(height: 16),

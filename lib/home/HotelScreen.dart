@@ -2,77 +2,83 @@ import 'package:flutter/material.dart';
 import 'package:tavel_app/home/HotelDetailScreen.dart';
 import 'package:tavel_app/models/Hotel.dart';
 
-
 class HotelScreen extends StatelessWidget {
-  static const String  routename='HotelScreen';
+  static const String routename = 'HotelScreen';
+
   final List<Hotel> hotels = [
     Hotel(
+      hotelId: '1',
       name: 'The Grand Hotel',
       image: 'assets/hotels/grand.jpg',
       starRating: 5,
-      description: 'Luxury hotel with all the modern amenities.'
-          'Step into timeless luxury at The Grand Hotel,'
-          ' an iconic destination known for its opulent interiors,'
-          ' exceptional service, and world-class amenities.'
-          ' Ideal for both leisure and business travelers,'
-          ' the hotel features spacious rooms, gourmet dining options,'
-          ' and a rooftop pool with stunning city views.'
-          ' Experience grandeur at every turn.',
+      description1: 'Luxury hotel with all the modern amenities.',
+      description2: 'Step into timeless luxury at The Grand Hotel, '
+          'an iconic destination known for its opulent interiors, '
+          'exceptional service, and world-class amenities. '
+          'Ideal for both leisure and business travelers, '
+          'the hotel features spacious rooms, gourmet dining options, '
+          'and a rooftop pool with stunning city views. '
+          'Experience grandeur at every turn.',
     ),
     Hotel(
+      hotelId: '2',
       name: 'City Center Inn',
       image: 'assets/hotels/city.jpg',
       starRating: 4,
-      description: 'A comfortable stay with central city access.'
-          'Located in the heart of the city,'
-          ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
-          ' This boutique hotel combines modern design with comfort,'
-          ' providing easy access to shopping, dining, and cultural landmarks.'
-          ' Perfect for a weekend getaway or a business trip.',
+      description1: 'A comfortable stay with central city access.',
+      description2: 'Located in the heart of the city, '
+          'the City Center Inn offers a cozy and convenient stay for urban explorers. '
+          'This boutique hotel combines modern design with comfort, '
+          'providing easy access to shopping, dining, and cultural landmarks. '
+          'Perfect for a weekend getaway or a business trip.',
     ),
     Hotel(
+      hotelId: '3',
       name: 'Beach Resort',
       image: 'assets/hotels/beach.jpg',
       starRating: 4,
-      description: 'Enjoy beach views and relaxation with family.'
-          'Escape to paradise at the Beach Resort'
-          ', where the sun, sea, and sand converge.'
-          ' Enjoy breathtaking oceanfront views,'
-          ' luxurious suites, and an array of recreational activities,'
-          ' from watersports to spa treatments.'
-          ' A haven for relaxation and adventure alike.',
+      description1: 'Enjoy beach views and relaxation with family.',
+      description2: 'Escape to paradise at the Beach Resort, '
+          'where the sun, sea, and sand converge. '
+          'Enjoy breathtaking oceanfront views, luxurious suites, '
+          'and an array of recreational activities, from watersports to spa treatments. '
+          'A haven for relaxation and adventure alike.',
     ),
     Hotel(
+
+      hotelId: '4',
       name: 'Mountain Lodge',
       image: 'assets/hotels/mountian.jpg',
       starRating: 5,
-      description: 'Escape into the serene beauty of mountain landscapes.'
-          'Nestled in the serene mountains, '
-          'the Mountain Lodge is a cozy retreat for nature lovers.'
-          ' With its rustic charm, crackling fireplaces,'
-          ' and panoramic views, this lodge offers a perfect blend of comfort and adventure.'
-          ' Ideal for hiking enthusiasts or anyone seeking tranquility.',
+      description1: 'Escape into the serene beauty of mountain landscapes.',
+      description2: 'Nestled in the serene mountains, '
+          'the Mountain Lodge is a cozy retreat for nature lovers. '
+          'With its rustic charm, crackling fireplaces, and panoramic views, '
+          'this lodge offers a perfect blend of comfort and adventure. '
+          'Ideal for hiking enthusiasts or anyone seeking tranquility.',
     ),
     Hotel(
+      hotelId: '5',
       name: 'Beachside Retreat',
       image: 'assets/hotels/beach.jpg',
       starRating: 5,
-      description: 'Escape into the serene beauty of mountain landscapes.'
-          'Unwind at the Beachside Retreat,'
-          ' a charming getaway with direct beach access and stunning sunsets. '
-          'This boutique hotel offers stylish rooms, personalized service,'
-          ' and a laid-back ambiance. A dream destination for couples and families alike.',
+      description1: 'Escape into the serene beauty of mountain landscapes.',
+      description2: 'Unwind at the Beachside Retreat, '
+          'a charming getaway with direct beach access and stunning sunsets. '
+          'This boutique hotel offers stylish rooms, personalized service, '
+          'and a laid-back ambiance. A dream destination for couples and families alike.',
     ),
     Hotel(
+      hotelId: '6',
       name: 'Urban Oasis',
       image: 'assets/hotels/seaview.jpg',
       starRating: 5,
-      description: 'Modern vibes with city views'
-          'Discover a chic and vibrant escape at the Urban Oasis,'
-          ' a modern hotel designed for the cosmopolitan traveler.'
-          ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'
-          ' this hotel offers a refreshing haven amidst the bustling cityscape.'
-          ' Perfect for business and leisure.',
+      description1: 'Modern vibes with city views',
+      description2: 'Discover a chic and vibrant escape at the Urban Oasis, '
+          'a modern hotel designed for the cosmopolitan traveler. '
+          'With its sleek interiors, rooftop lounge, and state-of-the-art facilities, '
+          'this hotel offers a refreshing haven amidst the bustling cityscape. '
+          'Perfect for business and leisure.',
     ),
   ];
 
@@ -117,8 +123,9 @@ class HotelScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
+              hotel.description1,
               maxLines: 2,
-              hotel.description,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 14, color: Colors.grey[700]),
             ),
           ),
@@ -138,12 +145,12 @@ class HotelScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HotelDetailScreen(hotelName: hotel.name,
-                      hotelDescription: hotel.description,
-                      hotelImageUrl: hotel.image,
-                      hotelStarRating: hotel.starRating, hotel: hotel)),
+                  MaterialPageRoute(
+                    builder: (context) => HotelDetailScreen(
+                      hotel: hotel,
+                    ),
+                  ),
                 );
-
               },
               child: Text('View Details'),
             ),
