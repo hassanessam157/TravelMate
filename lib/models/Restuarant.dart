@@ -1,13 +1,13 @@
 class Restaurant {
   final String name;
-  final String imageUrl;
+  final String image;
   final double starRating;
-  final String cuisine;
+  final String description;
 
   Restaurant({
     required this.name,
-    required this.imageUrl,
+    required this.image,
     required this.starRating,
-    required this.cuisine,
+    required this.description,
   });
 }

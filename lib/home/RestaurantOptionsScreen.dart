@@ -4,24 +4,28 @@ import '../models/Restuarant.dart';
  // Import the Restaurant model
 
 class RestaurantOptionsScreen extends StatelessWidget {
+  static const String routename='RestaurantOptionsScreen';
   final List<Restaurant> restaurants = [
     Restaurant(
       name: 'Italian Delight',
-      imageUrl: 'https://via.placeholder.com/150',
+      image: 'https://via.placeholder.com/150',
       starRating: 4.5,
-      cuisine: 'Italian',
+      description: '',
+
     ),
     Restaurant(
       name: 'Sushi World',
-      imageUrl: 'https://via.placeholder.com/150',
+      image: 'https://via.placeholder.com/150',
       starRating: 5.0,
-      cuisine: 'Japanese',
+      description: '',
+
     ),
     Restaurant(
       name: 'Burger Haven',
-      imageUrl: 'https://via.placeholder.com/150',
+      image: 'https://via.placeholder.com/150',
       starRating: 4.0,
-      cuisine: 'American',
+      description: '',
+
     ),
   ];
 
@@ -40,14 +44,14 @@ class RestaurantOptionsScreen extends StatelessWidget {
             margin: EdgeInsets.all(8.0),
             child: ListTile(
               leading: Image.network(
-                restaurant.imageUrl,
+                restaurant.image,
                 fit: BoxFit.cover,
                 width: 50,
                 height: 50,
               ),
               title: Text(restaurant.name),
               subtitle: Text(
-                  '${restaurant.starRating} ⭐ - ${restaurant.cuisine} Cuisine'),
+                  '${restaurant.starRating} ⭐ } Cuisine'),
               onTap: () {
                 // Handle navigation or details
               },

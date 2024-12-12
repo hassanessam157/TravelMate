@@ -6,7 +6,9 @@ class FlightOptionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         title: Text('Flight Options'),
+        elevation: 10,
       ),
       body: ListView(
         children: [
@@ -28,8 +30,56 @@ class FlightOptionsScreen extends StatelessWidget {
           ),
           _buildFlightOption(
             context,
-            "Flight 303",
-            "NYC → CHI",
+            "Flight 210",
+            "LA → NYC",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$200",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 301",
+            "LA → CHI",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$230",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 300",
+            "SF → CHI",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$250",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 111",
+            "CHI → SF",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$200",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 302",
+            "LA → SF",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$250",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 305",
+            "CHI → SF",
+            "Departure: 9:00 AM",
+            "Arrival: 12:00 PM",
+            "Price: \$200",
+          ),
+          _buildFlightOption(
+            context,
+            "Flight 304",
+            "SF → LA",
             "Departure: 9:00 AM",
             "Arrival: 12:00 PM",
             "Price: \$200",

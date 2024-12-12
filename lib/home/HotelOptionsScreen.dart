@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tavel_app/BookingScreen/BookingScreen.dart';
 
 class HotelOptionsScreen extends StatelessWidget {
+  static const String routename='hoteloptionsscreen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -6,10 +6,12 @@ import 'package:tavel_app/BookingScreen/BookingScreen.dart';
 import 'package:tavel_app/MainScreen.dart';
 import 'package:tavel_app/home/FlightOptionsScreen.dart';
 import 'package:tavel_app/home/HomeScreen.dart';
-import 'package:tavel_app/location/LocationDetailsScreen.dart';
+import 'package:tavel_app/home/HotelOptionsScreen.dart';
+import 'package:tavel_app/home/RestaurantOptionsScreen.dart';
+import 'package:tavel_app/home/SettingScreen.dart';
+import 'package:tavel_app/location/Location_screen.dart';
 import 'package:tavel_app/location/SavedLocationScreen.dart';
 import 'package:tavel_app/splash_screen.dart';
-import 'package:flutter/material.dart';
 
 void main(){
 
@@ -23,17 +25,25 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       initialRoute:LoginScreen.routename ,
       routes: {
+        LocationScreen.routename:(context)=>LocationScreen(),
         SplashScreen.routename:(context)=>SplashScreen(),
         LoginScreen.routename:(context)=>LoginScreen(),
         HomeScreen.routename:(context)=>HomeScreen(),
         AccountScreen.routename:(context)=>AccountScreen(),
         SignUpScreen.routename:(context)=>SignUpScreen(),
+        RestaurantOptionsScreen.routename:(context)=>RestaurantOptionsScreen(),
+        HotelOptionsScreen.routename:(context)=>HotelOptionsScreen(),
 
-    LocationDetailScreen.routename: (context) => LocationDetailScreen(
-    locationName: ModalRoute.of(context)?.settings.arguments as String? ?? '',
-    imageUrl: ModalRoute.of(context)?.settings.arguments as String? ?? '',
-    ),
-        SavedLocationsPage.routename:(context)=>SavedLocationsPage(),
+        SavedScreen.routname: (context) {
+        final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+        return SavedScreen(
+        name: args?['name'] ?? 'Unknown',
+        description: args?['description'] ?? 'Unknown',
+        imageUrl: args?['imageUrl'] ?? '',
+        starRating: args?['starRating'] ?? 0.0,
+        );},
+
+        SettingsScreen.routename:(Context)=>SettingsScreen(),
         BookingScreen.routename:(context)=>BookingScreen(),
         FlightOptionsScreen.routename:(context)=>FlightOptionsScreen()
 
