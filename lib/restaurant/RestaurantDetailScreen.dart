@@ -58,7 +58,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 child: Row(
                   children: List.generate(
                     starRating.toInt(),
-                        (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
+                    (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
                   ),
                 ),
               ),
@@ -69,7 +69,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => BookingrestaurantScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => BookingrestaurantScreen()),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Reserved at $name')),

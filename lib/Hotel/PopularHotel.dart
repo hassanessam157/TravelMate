@@ -1,42 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/HotelDetailScreen.dart';
+import 'package:tavel_app/Hotel/HotelDetailScreen.dart';
+
 import '../models/Hotel.dart';
 
 class PopularHotels extends StatelessWidget {
   // List of predefined hotels
   final List<Hotel> hotels = [
     Hotel(
-      hotelId: '1',
-      name: 'The Grand Resort',
-      description1: 'Luxury hotel with all the modern amenities.',
-      image: 'assets/hotels/grand.jpg',
-      starRating: 4.8,
-      description2: 'Step into timeless luxury at The Grand Hotel,'
-    ' an iconic destination known for its opulent interiors,'
-        ' exceptional service, and world-class amenities.'
-        ' Ideal for both leisure and business travelers,'
-        ' the hotel features spacious rooms, gourmet dining options,'
-        ' and a rooftop pool with stunning city views.'
-        ' Experience grandeur at every turn.'
-    ),
+        hotelId: '1',
+        name: 'The Grand Resort',
+        description1: 'Luxury hotel with all the modern amenities.',
+        image: 'assets/hotels/grand.jpg',
+        starRating: 4.8,
+        price: '2000',
+        location: 'center citu',
+        description2: 'Step into timeless luxury at The Grand Hotel,'
+            ' an iconic destination known for its opulent interiors,'
+            ' exceptional service, and world-class amenities.'
+            ' Ideal for both leisure and business travelers,'
+            ' the hotel features spacious rooms, gourmet dining options,'
+            ' and a rooftop pool with stunning city views.'
+            ' Experience grandeur at every turn.'),
     Hotel(
-      hotelId: '2',
-      name: 'City Comfort Inn',
-      description1: 'Cozy and affordable hotel',
-      image: 'assets/hotels/city.jpg',
-      starRating: 4.5,
-      description2: 'Located in the heart of the city,'
-    ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
-        ' This boutique hotel combines modern design with comfort,'
-        ' providing easy access to shopping, dining, and cultural landmarks.'
-        ' Perfect for a weekend getaway or a business trip.'
-    ),
+        hotelId: '2',
+        name: 'City Comfort Inn',
+        description1: 'Cozy and affordable hotel',
+        image: 'assets/hotels/city.jpg',
+        starRating: 4.5,
+        price: '2000',
+        location: 'center citu',
+        description2: 'Located in the heart of the city,'
+            ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
+            ' This boutique hotel combines modern design with comfort,'
+            ' providing easy access to shopping, dining, and cultural landmarks.'
+            ' Perfect for a weekend getaway or a business trip.'),
     Hotel(
       hotelId: '3',
       name: 'Mountain Lodge',
       description1: 'Experience comfort in the mountains',
       image: 'assets/hotels/mountian.jpg',
       starRating: 4.2,
+      price: '2000',
+      location: 'center citu',
       description2: 'Escape into the serene beauty of mountain landscapes.'
           'Nestled in the serene mountains,'
           'the Mountain Lodge is a cozy retreat for nature lovers.'
@@ -50,25 +55,27 @@ class PopularHotels extends StatelessWidget {
       description1: 'Relax by the beach',
       image: 'assets/hotels/beach.jpg',
       starRating: 5.0,
+      price: '2000',
+      location: 'center citu',
       description2: 'Escape into the serene beauty of mountain landscapes.'
           'Unwind at the Beachside Retreat,'
           ' a charming getaway with direct beach access and stunning sunsets. '
           'This boutique hotel offers stylish rooms, personalized service,'
           ' and a laid-back ambiance. A dream destination for couples and families alike.',
-
     ),
     Hotel(
-      hotelId: '5',
-      name: 'Urban Oasis',
-      description1: 'Modern vibes with city views',
-      image: 'assets/hotels/seaview.jpg',
-      starRating: 4.3,
-      description2: 'Discover a chic and vibrant escape at the Urban Oasis,'
-          ' a modern hotel designed for the cosmopolitan traveler.'
-          ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'
-          ' this hotel offers a refreshing haven amidst the bustling cityscape.'
-          ' Perfect for business and leisure.'
-    ),
+        hotelId: '5',
+        name: 'Urban Oasis',
+        description1: 'Modern vibes with city views',
+        image: 'assets/hotels/seaview.jpg',
+        starRating: 4.3,
+        price: '2000',
+        location: 'center citu',
+        description2: 'Discover a chic and vibrant escape at the Urban Oasis,'
+            ' a modern hotel designed for the cosmopolitan traveler.'
+            ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'
+            ' this hotel offers a refreshing haven amidst the bustling cityscape.'
+            ' Perfect for business and leisure.'),
   ];
 
   @override
@@ -160,17 +167,17 @@ class PopularHotels extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         5,
-            (index) {
+        (index) {
           if (index < rating.floor()) {
             return const Icon(Icons.star, color: Colors.orange, size: 14);
           } else if (index < rating) {
             return const Icon(Icons.star_half, color: Colors.orange, size: 14);
           } else {
-            return const Icon(Icons.star_border, color: Colors.orange, size: 14);
+            return const Icon(Icons.star_border,
+                color: Colors.orange, size: 14);
           }
         },
       ),
     );
   }
 }
-

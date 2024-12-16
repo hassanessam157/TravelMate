@@ -5,12 +5,11 @@ class BookingrestaurantScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reservation'), centerTitle: true,
+        title: Text('Reservation'),
+        centerTitle: true,
         backgroundColor: Colors.orange,
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,8 +19,8 @@ class BookingrestaurantScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Let\'s Travel Together',
-                    style: TextStyle(fontSize: 24,
-                        fontWeight: FontWeight.bold)),
+                    style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
                 _buildDateField('Check In Date'),
                 SizedBox(height: 10),
@@ -48,6 +47,7 @@ class BookingrestaurantScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildDateField(String label) {
     return TextField(
       readOnly: true,
@@ -61,6 +61,7 @@ class BookingrestaurantScreen extends StatelessWidget {
       },
     );
   }
+
   Widget _buildGuestsField() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/BookingScreen/BookingScreen.dart';
+import 'package:tavel_app/BookingScreen/BookingHotelScreen.dart';
 import 'package:tavel_app/models/Hotel.dart';
 
 class HotelDetailScreen extends StatelessWidget {
   final Hotel hotel;
 
-  const HotelDetailScreen({
+  HotelDetailScreen({
     Key? key,
     required this.hotel,
   }) : super(key: key);
@@ -68,8 +68,15 @@ class HotelDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                hotel.price,
+                style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+              ),
+            ),
 
-            // Hotel Description Part 1
+            // Hotel Description
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
@@ -78,8 +85,6 @@ class HotelDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-
-            // Hotel Description Part 2
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
@@ -88,33 +93,22 @@ class HotelDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-
-            // Divider
-            Divider(
-              thickness: 1,
-              color: Colors.grey[300],
-              indent: 16,
-              endIndent: 16,
-            ),
-            SizedBox(height: 16),
-
             // Booking Button
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  // Navigating to the BookingScreen with hotel details
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BookingScreen(
-                        hotelId: hotel.hotelId,
-                        hotelName: hotel.name,
-                      ),
-                    ),
+                        builder: (context) => HotelBookingScreen(
+                            hotelId: hotel.hotelId, hotelName: hotel.name)),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
                 child: Text(
                   'Book Now',

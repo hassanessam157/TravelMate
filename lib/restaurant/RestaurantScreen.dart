@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/RestaurantDetailScreen.dart';
 import 'package:tavel_app/models/Restuarant.dart';
-
+import 'package:tavel_app/restaurant/RestaurantDetailScreen.dart';
 
 class RestaurantScreen extends StatelessWidget {
-  static const String routename='RestaurantScreen';
+  static const String routename = 'RestaurantScreen';
   final List<Restaurant> restaurants = [
     Restaurant(
       name: 'Seafood Delight',
@@ -135,17 +134,15 @@ class RestaurantScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               children: List.generate(
                 restaurant.starRating.toInt(),
-                    (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
+                (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
@@ -154,7 +151,6 @@ class RestaurantScreen extends StatelessWidget {
               style: TextStyle(fontSize: 14, color: Colors.grey[700]),
             ),
           ),
-
         ],
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/HotelDetailScreen.dart';
+import 'package:tavel_app/Hotel/HotelDetailScreen.dart';
 import 'package:tavel_app/models/Hotel.dart';
 
 class HotelScreen extends StatelessWidget {
@@ -11,6 +11,8 @@ class HotelScreen extends StatelessWidget {
       name: 'The Grand Hotel',
       image: 'assets/hotels/grand.jpg',
       starRating: 5,
+      price: 'Price: 2100',
+      location: 'center citu',
       description1: 'Luxury hotel with all the modern amenities.',
       description2: 'Step into timeless luxury at The Grand Hotel, '
           'an iconic destination known for its opulent interiors, '
@@ -25,6 +27,8 @@ class HotelScreen extends StatelessWidget {
       name: 'City Center Inn',
       image: 'assets/hotels/city.jpg',
       starRating: 4,
+      price: 'Price: 2000',
+      location: 'center citu',
       description1: 'A comfortable stay with central city access.',
       description2: 'Located in the heart of the city, '
           'the City Center Inn offers a cozy and convenient stay for urban explorers. '
@@ -36,7 +40,9 @@ class HotelScreen extends StatelessWidget {
       hotelId: '3',
       name: 'Beach Resort',
       image: 'assets/hotels/beach.jpg',
-      starRating: 4,
+      starRating: 7,
+      price: 'Price: 3500',
+      location: 'center citu',
       description1: 'Enjoy beach views and relaxation with family.',
       description2: 'Escape to paradise at the Beach Resort, '
           'where the sun, sea, and sand converge. '
@@ -45,11 +51,12 @@ class HotelScreen extends StatelessWidget {
           'A haven for relaxation and adventure alike.',
     ),
     Hotel(
-
       hotelId: '4',
       name: 'Mountain Lodge',
       image: 'assets/hotels/mountian.jpg',
       starRating: 5,
+      price: 'Price: 2800',
+      location: 'center citu',
       description1: 'Escape into the serene beauty of mountain landscapes.',
       description2: 'Nestled in the serene mountains, '
           'the Mountain Lodge is a cozy retreat for nature lovers. '
@@ -62,6 +69,8 @@ class HotelScreen extends StatelessWidget {
       name: 'Beachside Retreat',
       image: 'assets/hotels/beach.jpg',
       starRating: 5,
+      price: ' Price: 2500',
+      location: 'center citu',
       description1: 'Escape into the serene beauty of mountain landscapes.',
       description2: 'Unwind at the Beachside Retreat, '
           'a charming getaway with direct beach access and stunning sunsets. '
@@ -73,6 +82,8 @@ class HotelScreen extends StatelessWidget {
       name: 'Urban Oasis',
       image: 'assets/hotels/seaview.jpg',
       starRating: 5,
+      price: 'Price: 2500',
+      location: 'center citu',
       description1: 'Modern vibes with city views',
       description2: 'Discover a chic and vibrant escape at the Urban Oasis, '
           'a modern hotel designed for the cosmopolitan traveler. '
@@ -135,7 +146,7 @@ class HotelScreen extends StatelessWidget {
             child: Row(
               children: List.generate(
                 hotel.starRating.toInt(),
-                    (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
+                (index) => Icon(Icons.star, color: Colors.yellow, size: 16),
               ),
             ),
           ),

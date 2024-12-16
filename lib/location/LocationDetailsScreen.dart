@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/HotelScreen.dart';
+import 'package:tavel_app/Hotel/HotelScreen.dart';
+
 import '../models/Location.dart';
 
 class LocationDetailScreen extends StatelessWidget {
@@ -55,13 +56,16 @@ class LocationDetailScreen extends StatelessWidget {
             Row(
               children: List.generate(
                 5,
-                    (index) {
+                (index) {
                   if (index < locationStarRating.floor()) {
-                    return const Icon(Icons.star, color: Colors.orange, size: 20);
+                    return const Icon(Icons.star,
+                        color: Colors.orange, size: 20);
                   } else if (index < locationStarRating) {
-                    return const Icon(Icons.star_half, color: Colors.orange, size: 20);
+                    return const Icon(Icons.star_half,
+                        color: Colors.orange, size: 20);
                   } else {
-                    return const Icon(Icons.star_border, color: Colors.orange, size: 20);
+                    return const Icon(Icons.star_border,
+                        color: Colors.orange, size: 20);
                   }
                 },
               ),
@@ -74,18 +78,16 @@ class LocationDetailScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: (){
-                  Navigator.of(context).pushNamed(HotelScreen.routename);
-                },
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(HotelScreen.routename);
+                    },
                     child: Text('Search Hotels'))
               ],
             )
-
           ],
         ),
       ),
     );
   }
 }
-
-

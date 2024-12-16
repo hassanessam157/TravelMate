@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:tavel_app/Account/RegisterScreen.dart';
 import 'package:tavel_app/home/HomeScreen.dart';
 import 'package:tavel_app/splash_screen.dart';
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: 'Email',
                 border: OutlineInputBorder(),
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: 'Password',
                 border: OutlineInputBorder(),
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 suffixIcon: Icon(Icons.visibility_off),
               ),
             ),
@@ -115,23 +115,23 @@ class _LoginScreenState extends State<LoginScreen> {
             _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : ElevatedButton(
-              onPressed: _login,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                minimumSize: const Size(double.infinity, 50.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: const Text(
-                'SIGN IN',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
+                    onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      minimumSize: const Size(double.infinity, 50.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'SIGN IN',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
 
             const SizedBox(height: 20.0),
 

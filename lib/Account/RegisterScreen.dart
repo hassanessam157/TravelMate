@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:tavel_app/Account/LoginScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,7 +16,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -36,7 +37,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     try {
       // Register the user with email and password
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
@@ -50,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'name': _fullNameController.text.trim(),
           'email': _emailController.text.trim(),
           'address': _addresController.text.trim(),
-          'phone' : _phoneController.text.trim()
+          'phone': _phoneController.text.trim()
 
           // Add more fields like phone, address if required
         });
@@ -141,19 +143,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               _isLoading
                   ? CircularProgressIndicator()
                   : ElevatedButton(
-                onPressed: _register,
-                child: Text(
-                  'REGISTER',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 100,
-                    vertical: 15,
-                  ),
-                ),
-              ),
+                      onPressed: _register,
+                      child: Text(
+                        'REGISTER',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 100,
+                          vertical: 15,
+                        ),
+                      ),
+                    ),
 
               const SizedBox(height: 20),
 

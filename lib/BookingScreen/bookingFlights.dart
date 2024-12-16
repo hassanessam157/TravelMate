@@ -1,6 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BookingFlightScreen extends StatefulWidget {
+  final String flightNumber;
+  final String route;
+  final String price;
+
+  BookingFlightScreen({
+    required this.flightNumber,
+    required this.route,
+    required this.price,
+  });
+
   static const String routename = 'bookingFlights';
 
   @override
@@ -8,9 +19,12 @@ class BookingFlightScreen extends StatefulWidget {
 }
 
 class _BookingFlightScreenState extends State<BookingFlightScreen> {
-  DateTime? _checkInDate;
-  DateTime? _checkOutDate;
-  bool _isOneWay = false; // Toggle for one-way trip
+  DateTime? _departureDate;
+  DateTime? _returnDate;
+  bool _isRoundTrip = false;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _adultsController = TextEditingController();
+  TextEditingController _childrenController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context, String label) async {
     DateTime? pickedDate = await showDatePicker(
@@ -22,12 +36,43 @@ class _BookingFlightScreenState extends State<BookingFlightScreen> {
 
     if (pickedDate != null) {
       setState(() {
-        if (label == 'Check In Date') {
-          _checkInDate = pickedDate;
-        } else if (label == 'Check Out Date') {
-          _checkOutDate = pickedDate;
+        if (label == 'Departure Date') {
+          _departureDate = pickedDate;
+        } else if (label == 'Return Date') {
+          _returnDate = pickedDate;
         }
       });
+    }
+  }
+
+  Future<void> _saveBooking() async {
+    if (_departureDate == null || (_isRoundTrip && _returnDate == null)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please select all required dates!')),
+      );
+      return;
+    }
+
+    try {
+      await FirebaseFirestore.instance.collection('bookings').add({
+        'flightNumber': widget.flightNumber,
+        'route': widget.route,
+        'departureDate': _departureDate?.toIso8601String(),
+        'returnDate': _returnDate?.toIso8601String(),
+        'passengerName': _nameController.text,
+        'adults': _adultsController.text,
+        'children': _childrenController.text,
+        'price': widget.price,
+        'tripType': _isRoundTrip ? 'Round Trip' : 'One-Way',
+        'bookingTime': FieldValue.serverTimestamp(),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Booking saved successfully!')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error saving booking: $e')),
+      );
     }
   }
 
@@ -35,132 +80,74 @@ class _BookingFlightScreenState extends State<BookingFlightScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Booking Now'),
-        centerTitle: true,
+        title: Text('Booking Flight'),
         backgroundColor: Colors.orange,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Let\'s Travel Together',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _nameController,
+              decoration: InputDecoration(labelText: 'Passenger Name'),
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Text('Round Trip'),
+                Switch(
+                  value: _isRoundTrip,
+                  onChanged: (value) {
+                    setState(() {
+                      _isRoundTrip = value;
+                      if (!_isRoundTrip) {
+                        _returnDate = null; // Reset return date
+                      }
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text('Select Departure Date'),
+            ElevatedButton(
+              onPressed: () => _selectDate(context, 'Departure Date'),
+              child: Text(_departureDate == null
+                  ? 'Pick Date'
+                  : _departureDate.toString()),
+            ),
+            if (_isRoundTrip)
+              Column(
                 children: [
-                  Text(
-                    'One-Way Trip',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Switch(
-                    value: _isOneWay,
-                    onChanged: (value) {
-                      setState(() {
-                        _isOneWay = value;
-                        if (_isOneWay) {
-                          _checkOutDate = null; // Reset check-out date
-                        }
-                      });
-                    },
+                  SizedBox(height: 10),
+                  Text('Select Return Date'),
+                  ElevatedButton(
+                    onPressed: () => _selectDate(context, 'Return Date'),
+                    child: Text(_returnDate == null
+                        ? 'Pick Date'
+                        : _returnDate.toString()),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              _buildDestinationField(),
-              SizedBox(height: 10),
-              _buildDateField('Check In Date'),
-              SizedBox(height: 10),
-              if (!_isOneWay) _buildDateField('Check Out Date'), // Hide for one-way trips
-              SizedBox(height: 20),
-              _buildGuestsField(),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  if (_checkInDate == null || (!_isOneWay && _checkOutDate == null)) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Please select all required dates!')),
-                    );
-                  } else {
-                    String tripType = _isOneWay ? 'One-Way' : 'Round Trip';
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Flight booked: $tripType\n'
-                              'From: ${_checkInDate!.toLocal()}'
-                              '${!_isOneWay ? '\nTo: ${_checkOutDate!.toLocal()}' : ''}',
-                        ),
-                      ),
-                    );
-                  }
-                },
-                child: Text('Booking'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  minimumSize: Size(double.infinity, 0), // Full width button
-                ),
-              ),
-            ],
-          ),
+            SizedBox(height: 20),
+            TextField(
+              controller: _adultsController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Number of Adults'),
+            ),
+            TextField(
+              controller: _childrenController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Number of Children'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _saveBooking,
+              child: Text('Confirm Booking'),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDestinationField() {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: 'Destination',
-        border: OutlineInputBorder(),
-        suffixIcon: Icon(Icons.location_on),
-      ),
-    );
-  }
-
-  Widget _buildDateField(String label) {
-    return InkWell(
-      onTap: () => _selectDate(context, label),
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
-        ),
-        child: Text(
-          label == 'Check In Date'
-              ? (_checkInDate != null
-              ? '${_checkInDate!.toLocal()}'.split(' ')[0]
-              : 'Select Date')
-              : (_checkOutDate != null
-              ? '${_checkOutDate!.toLocal()}'.split(' ')[0]
-              : 'Select Date'),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGuestsField() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(child: _buildGuestInput('Adults')),
-        SizedBox(width: 10),
-        Expanded(child: _buildGuestInput('Children')),
-      ],
-    );
-  }
-
-  Widget _buildGuestInput(String label) {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.number,
     );
   }
 }

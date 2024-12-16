@@ -1,8 +1,4 @@
-
-
-
 import 'package:flutter/material.dart';
-
 import 'package:tavel_app/home/HomeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,9 +27,13 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('TravelMate',style:TextStyle(fontSize: 50,
+          Text(
+            'TravelMate',
+            style: TextStyle(
+              fontSize: 50,
               color: Colors.orange,
-              ),),
+            ),
+          ),
           Center(
             child: Icon(
               Icons.handshake,

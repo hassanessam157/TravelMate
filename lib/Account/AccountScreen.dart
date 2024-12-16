@@ -42,7 +42,9 @@ class AccountScreen extends StatelessWidget {
               title: const Text('My Account'),
               backgroundColor: Colors.orange,
             ),
-            body: Center(child: Text('User data not found. Please check your registration data.')),
+            body: Center(
+                child: Text(
+                    'User data not found. Please check your registration data.')),
           );
         }
 
@@ -109,7 +111,8 @@ class AccountScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
                     ),
                     child: const Text(
                       'Sign Out',
