@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/RestaurantDetailScreen.dart';
+import 'package:tavel_app/restaurant/RestaurantDetailScreen.dart';
 
 class PopularRestaurants extends StatelessWidget {
   @override
@@ -12,7 +12,8 @@ class PopularRestaurants extends StatelessWidget {
           restaurantCard(
             context,
             name: 'The Gourmet Garden',
-            description: 'Fine dining experience A sanctuary for food enthusiasts,'
+            description:
+                'Fine dining experience A sanctuary for food enthusiasts,'
                 ' The Gourmet Garden combines farm-to-table freshness with culinary artistry.'
                 ' This enchanting restaurant offers a menu inspired by seasonal'
                 ' ingredients, featuring vibrant salads, handcrafted pastas,'
@@ -89,9 +90,9 @@ class PopularRestaurants extends StatelessWidget {
 
   Widget restaurantCard(BuildContext context,
       {required String name,
-        required String description,
-        required String image,
-        required double starRating }) {
+      required String description,
+      required String image,
+      required double starRating}) {
     return Card(
       elevation: 4,
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -145,7 +146,7 @@ class PopularRestaurants extends StatelessWidget {
               Row(
                 children: List.generate(
                   5,
-                      (index) => Icon(
+                  (index) => Icon(
                     index < starRating ? Icons.star : Icons.star_border,
                     color: Colors.orange,
                     size: 14,

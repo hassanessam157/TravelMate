@@ -1,68 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/home/HotelDetailScreen.dart';
+import 'package:tavel_app/Hotel/HotelDetailScreen.dart';
 import '../models/Hotel.dart';
 
 class PopularHotels extends StatelessWidget {
   // List of predefined hotels
   final List<Hotel> hotels = [
     Hotel(
-      name: 'The Grand Resort',
-      description: 'Luxury hotel with all the modern amenities.'
-          'Step into timeless luxury at The Grand Hotel,'
-          ' an iconic destination known for its opulent interiors,'
-          ' exceptional service, and world-class amenities.'
-          ' Ideal for both leisure and business travelers,'
-          ' the hotel features spacious rooms, gourmet dining options,'
-          ' and a rooftop pool with stunning city views.'
-          ' Experience grandeur at every turn.',
-      image: 'assets/hotels/grand.jpg',
-      starRating: 4.8,
-    ),
+        hotelId: '1',
+        name: 'The Grand Resort',
+        description1: 'Luxury hotel with all the modern amenities.',
+        image: 'assets/hotels/grand.jpg',
+        starRating: 4.8,
+        price: 'price: 2050',
+        location: 'North cost',
+        description2: 'Step into timeless luxury at The Grand Hotel,'
+            ' an iconic destination known for its opulent interiors,'
+            ' exceptional service, and world-class amenities.'
+            ' Ideal for both leisure and business travelers,'
+            ' the hotel features spacious rooms, gourmet dining options,'
+            ' and a rooftop pool with stunning city views.'
+            ' Experience grandeur at every turn.'),
     Hotel(
-      name: 'City Comfort Inn',
-      description: 'Cozy and affordable hotel'
-          'Located in the heart of the city,'
-          ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
-          ' This boutique hotel combines modern design with comfort,'
-          ' providing easy access to shopping, dining, and cultural landmarks.'
-          ' Perfect for a weekend getaway or a business trip.',
-      image: 'assets/hotels/city.jpg',
-      starRating: 4.5,
-    ),
+        hotelId: '2',
+        name: 'City Comfort Inn',
+        description1: 'Cozy and affordable hotel',
+        image: 'assets/hotels/city.jpg',
+        starRating: 4.5,
+        price: 'price: 2000',
+        location: 'dahab',
+        description2: 'Located in the heart of the city,'
+            ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
+            ' This boutique hotel combines modern design with comfort,'
+            ' providing easy access to shopping, dining, and cultural landmarks.'
+            ' Perfect for a weekend getaway or a business trip.'),
     Hotel(
+      hotelId: '3',
       name: 'Mountain Lodge',
-      description: 'Experience comfort in the mountains'
-          'Escape into the serene beauty of mountain landscapes.'
-  'Nestled in the serene mountains,'
-    'the Mountain Lodge is a cozy retreat for nature lovers.'
-    ' With its rustic charm, crackling fireplaces,'
-    ' and panoramic views, this lodge offers a perfect blend of comfort and adventure.'
-    ' Ideal for hiking enthusiasts or anyone seeking tranquility.',
+      description1: 'Experience comfort in the mountains',
       image: 'assets/hotels/mountian.jpg',
       starRating: 4.2,
+      price: '2000',
+      location: 'dahab',
+      description2: 'Escape into the serene beauty of mountain landscapes.'
+          'Nestled in the serene mountains,'
+          'the Mountain Lodge is a cozy retreat for nature lovers.'
+          ' With its rustic charm, crackling fireplaces,'
+          ' and panoramic views, this lodge offers a perfect blend of comfort and adventure.'
+          ' Ideal for hiking enthusiasts or anyone seeking tranquility.',
     ),
     Hotel(
+      hotelId: '4',
       name: 'Beachside Retreat',
-      description: 'Relax by the beach'
-          'Escape into the serene beauty of mountain landscapes.'
+      description1: 'Relax by the beach',
+      image: 'assets/hotels/beach.jpg',
+      starRating: 5.0,
+      price: '2000',
+      location: 'Sharm El Sheikh',
+      description2: 'Escape into the serene beauty of mountain landscapes.'
           'Unwind at the Beachside Retreat,'
           ' a charming getaway with direct beach access and stunning sunsets. '
           'This boutique hotel offers stylish rooms, personalized service,'
           ' and a laid-back ambiance. A dream destination for couples and families alike.',
-      image: 'assets/hotels/beach.jpg',
-      starRating: 5.0,
     ),
     Hotel(
-      name: 'Urban Oasis',
-      description: 'Modern vibes with city views'
-          'Discover a chic and vibrant escape at the Urban Oasis,'
-          ' a modern hotel designed for the cosmopolitan traveler.'
-          ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'
-          ' this hotel offers a refreshing haven amidst the bustling cityscape.'
-          ' Perfect for business and leisure.',
-      image: 'assets/hotels/seaview.jpg',
-      starRating: 4.3,
-    ),
+        hotelId: '5',
+        name: 'Urban Oasis',
+        description1: 'Modern vibes with city views',
+        image: 'assets/hotels/seaview.jpg',
+        starRating: 4.3,
+        price: '2000',
+        location: 'El Gouna',
+        description2: 'Discover a chic and vibrant escape at the Urban Oasis,'
+            ' a modern hotel designed for the cosmopolitan traveler.'
+            ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'
+            ' this hotel offers a refreshing haven amidst the bustling cityscape.'
+            ' Perfect for business and leisure.'),
   ];
 
   @override
@@ -86,10 +98,6 @@ class PopularHotels extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => HotelDetailScreen(
-              hotelName: hotel.name,
-              hotelDescription: hotel.description,
-              hotelImageUrl: hotel.image,
-              hotelStarRating: hotel.starRating,
               hotel: hotel,
             ),
           ),
@@ -132,13 +140,20 @@ class PopularHotels extends StatelessWidget {
               const SizedBox(height: 4),
               // Description
               Text(
-                hotel.description,
+                hotel.description1,
                 style: const TextStyle(fontSize: 12, color: Colors.grey),
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
               // Star Rating
               _buildStarRating(hotel.starRating),
+              const SizedBox(height: 4),
+              // Description
+              Text(
+                hotel.description2,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ),
@@ -151,17 +166,17 @@ class PopularHotels extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         5,
-            (index) {
+        (index) {
           if (index < rating.floor()) {
             return const Icon(Icons.star, color: Colors.orange, size: 14);
           } else if (index < rating) {
             return const Icon(Icons.star_half, color: Colors.orange, size: 14);
           } else {
-            return const Icon(Icons.star_border, color: Colors.orange, size: 14);
+            return const Icon(Icons.star_border,
+                color: Colors.orange, size: 14);
           }
         },
       ),
     );
   }
 }
-

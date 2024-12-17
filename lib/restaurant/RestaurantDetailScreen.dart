@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/BookingScreen/BookingScreen.dart';
+import 'package:tavel_app/BookingScreen/bookingrestaurant.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   final String name;
@@ -58,7 +58,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 child: Row(
                   children: List.generate(
                     starRating.toInt(),
-                        (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
+                    (index) => Icon(Icons.star, color: Colors.yellow, size: 20),
                   ),
                 ),
               ),
@@ -69,7 +69,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => BookingScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => BookingrestaurantScreen()),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Reserved at $name')),

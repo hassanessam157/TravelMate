@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tavel_app/BookingScreen/BookingScreen.dart';
-import 'package:tavel_app/home/HotelScreen.dart';
-import 'package:tavel_app/home/PopularHotel.dart';
-import 'package:tavel_app/home/PopularLocation.dart';
-import 'package:tavel_app/home/PopularRestaurants.dart';
-import 'package:tavel_app/home/RestaurantScreen.dart';
+import 'package:tavel_app/Hotel/HotelScreen.dart';
+import 'package:tavel_app/Hotel/PopularHotel.dart';
+import 'package:tavel_app/flights/FlightOptionsScreen.dart';
 import 'package:tavel_app/home/SettingScreen.dart';
 import 'package:tavel_app/location/Location_screen.dart';
-import 'package:tavel_app/home/FlightOptionsScreen.dart';
+import 'package:tavel_app/location/PopularLocation.dart';
+import 'package:tavel_app/restaurant/PopularRestaurants.dart';
+import 'package:tavel_app/restaurant/RestaurantScreen.dart';
 
 // Main HomeScreen with navigation
 class HomeScreen extends StatefulWidget {
@@ -23,9 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of screens to navigate to
   final List<Widget> _screens = [
     MainHomeScreen(),
-    BookingScreen(), // Booking
     LocationScreen(),
-    SettingsScreen()// Added LocationScreen to navigation
+    SettingsScreen() // Added LocationScreen to navigation
   ];
 
   @override
@@ -44,10 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_online),
-            label: "Booking",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),
@@ -92,7 +86,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(HotelScreen.routename);
                 },
                 child: const Text(
-                  'Popoular Restaurants',
+                  'Popular Restaurants',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -104,7 +98,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(HotelScreen.routename);
                 },
                 child: const Text(
-                  'Popoular Hotels',
+                  'Popular Hotels',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -116,7 +110,7 @@ class MainHomeScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(LocationScreen.routename);
                 },
                 child: const Text(
-                  'Explore Locations',
+                  'Popular Locations',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -142,7 +136,6 @@ class PopularTabsSection extends StatelessWidget {
             MaterialPageRoute(builder: (context) => FlightOptionsScreen()),
           );
         }),
-
         _buildCategoryButton(Icons.restaurant, 'Restaurant', () {
           Navigator.push(
             context,
@@ -179,4 +172,3 @@ class PopularTabsSection extends StatelessWidget {
   }
 }
 // Example clickable location list
-

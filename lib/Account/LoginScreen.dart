@@ -1,18 +1,53 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tavel_app/Account/signupScreen.dart';
+import 'package:tavel_app/Account/RegisterScreen.dart';
 import 'package:tavel_app/home/HomeScreen.dart';
 import 'package:tavel_app/splash_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static String routename = 'login';
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login Successful!')),
+      );
+      Navigator.of(context).pushReplacementNamed(HomeScreen.routename);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.handshake_outlined,),
+          icon: Icon(Icons.handshake_outlined),
           onPressed: () {
             Navigator.of(context).pushNamed(SplashScreen.routename);
           },
@@ -49,67 +84,54 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40.0),
 
-            // Username field
-            TextFormField(
+            // Email field
+            TextField(
+              controller: _emailController,
               decoration: const InputDecoration(
-                labelText: 'User Name',
+                labelText: 'Email',
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 20.0),
 
             // Password field
-            TextFormField(
+            TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 suffixIcon: Icon(Icons.visibility_off),
               ),
             ),
-            const SizedBox(height: 10.0),
-
-            // // Forget Password link
-            // Align(
-            //   alignment: Alignment.centerRight,
-            //   child: TextButton(
-            //     onPressed: () {
-            //       Navigator.of(context).pushNamed(SignUpScreen.routename);
-            //     },
-            //     child:  Text(
-            //       'Forget Password ?',
-            //       style: TextStyle(color: Colors.orange),
-            //     ),
-            //   ),
-            // ),
             const SizedBox(height: 20.0),
 
             // Sign In Button
-            ElevatedButton(
-              onPressed: () {
-                // Handle sign in
-                Navigator.of(context).pushReplacementNamed(HomeScreen.routename);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                minimumSize: const Size(double.infinity, 50.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: const Text(
-                'SIGN IN',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
+            _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : ElevatedButton(
+                    onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      minimumSize: const Size(double.infinity, 50.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'SIGN IN',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
 
             const SizedBox(height: 20.0),
 
@@ -121,7 +143,8 @@ class LoginScreen extends StatelessWidget {
                   const Text("DON'T HAVE AN ACCOUNT?"),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed(SignUpScreen.routename);
+                      Navigator.of(context)
+                          .pushReplacementNamed(RegisterScreen.routename);
                     },
                     child: const Text(
                       'SIGN UP',
@@ -134,7 +157,6 @@ class LoginScreen extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }

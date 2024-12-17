@@ -1,13 +1,31 @@
-class Flight {
-  final String departureCity;
-  final String arrivalCity;
-  final String airline;
-  final double price;
+class FlightBooking {
+  String flightNumber;
+  String route;
+  DateTime checkInDate;
+  DateTime? checkOutDate;
+  String passengerName;
+  String price;
+  String tripType;
 
-  Flight({
-    required this.departureCity,
-    required this.arrivalCity,
-    required this.airline,
+  FlightBooking({
+    required this.flightNumber,
+    required this.route,
+    required this.checkInDate,
+    this.checkOutDate,
+    required this.passengerName,
     required this.price,
+    required this.tripType,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'flightNumber': flightNumber,
+      'route': route,
+      'checkInDate': checkInDate.toIso8601String(),
+      'checkOutDate': checkOutDate?.toIso8601String(),
+      'passengerName': passengerName,
+      'price': price,
+      'tripType': tripType,
+    };
+  }
 }

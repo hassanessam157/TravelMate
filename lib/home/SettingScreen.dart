@@ -10,8 +10,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _darkModeEnabled = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
-
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text("App Info"),
@@ -50,7 +47,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () {
               Navigator.of(context).pushNamed(AccountScreen.routename);
             },
-
           ),
           Center(
             child: ElevatedButton(
@@ -59,7 +55,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               child: const Text(
                 'Sign Out',
