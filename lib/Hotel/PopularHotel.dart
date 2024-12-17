@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tavel_app/Hotel/HotelDetailScreen.dart';
-
 import '../models/Hotel.dart';
 
 class PopularHotels extends StatelessWidget {
@@ -12,8 +11,8 @@ class PopularHotels extends StatelessWidget {
         description1: 'Luxury hotel with all the modern amenities.',
         image: 'assets/hotels/grand.jpg',
         starRating: 4.8,
-        price: '2000',
-        location: 'center citu',
+        price: 'price: 2050',
+        location: 'North cost',
         description2: 'Step into timeless luxury at The Grand Hotel,'
             ' an iconic destination known for its opulent interiors,'
             ' exceptional service, and world-class amenities.'
@@ -27,8 +26,8 @@ class PopularHotels extends StatelessWidget {
         description1: 'Cozy and affordable hotel',
         image: 'assets/hotels/city.jpg',
         starRating: 4.5,
-        price: '2000',
-        location: 'center citu',
+        price: 'price: 2000',
+        location: 'dahab',
         description2: 'Located in the heart of the city,'
             ' the City Center Inn offers a cozy and convenient stay for urban explorers.'
             ' This boutique hotel combines modern design with comfort,'
@@ -41,7 +40,7 @@ class PopularHotels extends StatelessWidget {
       image: 'assets/hotels/mountian.jpg',
       starRating: 4.2,
       price: '2000',
-      location: 'center citu',
+      location: 'dahab',
       description2: 'Escape into the serene beauty of mountain landscapes.'
           'Nestled in the serene mountains,'
           'the Mountain Lodge is a cozy retreat for nature lovers.'
@@ -56,7 +55,7 @@ class PopularHotels extends StatelessWidget {
       image: 'assets/hotels/beach.jpg',
       starRating: 5.0,
       price: '2000',
-      location: 'center citu',
+      location: 'Sharm El Sheikh',
       description2: 'Escape into the serene beauty of mountain landscapes.'
           'Unwind at the Beachside Retreat,'
           ' a charming getaway with direct beach access and stunning sunsets. '
@@ -70,7 +69,7 @@ class PopularHotels extends StatelessWidget {
         image: 'assets/hotels/seaview.jpg',
         starRating: 4.3,
         price: '2000',
-        location: 'center citu',
+        location: 'El Gouna',
         description2: 'Discover a chic and vibrant escape at the Urban Oasis,'
             ' a modern hotel designed for the cosmopolitan traveler.'
             ' With its sleek interiors, rooftop lounge, and state-of-the-art facilities,'

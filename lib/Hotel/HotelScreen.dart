@@ -12,7 +12,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/grand.jpg',
       starRating: 5,
       price: 'Price: 2100',
-      location: 'center citu',
+      location: 'El Gouna',
       description1: 'Luxury hotel with all the modern amenities.',
       description2: 'Step into timeless luxury at The Grand Hotel, '
           'an iconic destination known for its opulent interiors, '
@@ -28,7 +28,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/city.jpg',
       starRating: 4,
       price: 'Price: 2000',
-      location: 'center citu',
+      location: 'Dahab',
       description1: 'A comfortable stay with central city access.',
       description2: 'Located in the heart of the city, '
           'the City Center Inn offers a cozy and convenient stay for urban explorers. '
@@ -42,7 +42,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/beach.jpg',
       starRating: 7,
       price: 'Price: 3500',
-      location: 'center citu',
+      location: 'North south',
       description1: 'Enjoy beach views and relaxation with family.',
       description2: 'Escape to paradise at the Beach Resort, '
           'where the sun, sea, and sand converge. '
@@ -56,7 +56,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/mountian.jpg',
       starRating: 5,
       price: 'Price: 2800',
-      location: 'center citu',
+      location: 'Dahab',
       description1: 'Escape into the serene beauty of mountain landscapes.',
       description2: 'Nestled in the serene mountains, '
           'the Mountain Lodge is a cozy retreat for nature lovers. '
@@ -70,7 +70,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/beach.jpg',
       starRating: 5,
       price: ' Price: 2500',
-      location: 'center citu',
+      location: 'Sharm El Sheikh',
       description1: 'Escape into the serene beauty of mountain landscapes.',
       description2: 'Unwind at the Beachside Retreat, '
           'a charming getaway with direct beach access and stunning sunsets. '
@@ -83,7 +83,7 @@ class HotelScreen extends StatelessWidget {
       image: 'assets/hotels/seaview.jpg',
       starRating: 5,
       price: 'Price: 2500',
-      location: 'center citu',
+      location: 'El gouna',
       description1: 'Modern vibes with city views',
       description2: 'Discover a chic and vibrant escape at the Urban Oasis, '
           'a modern hotel designed for the cosmopolitan traveler. '

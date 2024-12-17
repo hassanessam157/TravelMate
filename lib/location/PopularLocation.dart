@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../models/Location.dart';
 import 'LocationDetailsScreen.dart';
 
